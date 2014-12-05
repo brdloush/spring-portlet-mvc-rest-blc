@@ -1,7 +1,7 @@
 spring-portlet-mvc-rest-blc
 ==================
 
-(inspired by http://github.com/miamidade/spring-portlet-mvc.git)
+(inspired by <http://github.com/miamidade/spring-portlet-mvc.git>)
 
 A minimal Spring Portlet MVC project using Maven.
 
@@ -16,7 +16,7 @@ A minimal Spring Portlet MVC project using Maven.
 
 Usage
 -----
-First make sure that you're running BLC Demo site server (https://github.com/BroadleafCommerce/DemoSite) on localhost:8080 and that you've enabled REST API in its web.xml. You simply need to add following line to into patchConfigLocation, just before the applicationContext-security:
+First make sure that you're running BLC Demo site server (<https://github.com/BroadleafCommerce/DemoSite>) on <http://localhost:8080> and that you've enabled REST API in its web.xml. You simply need to add following line to into patchConfigLocation, just before the applicationContext-security:
 ```
 /WEB-INF/applicationContext-rest-api.xml 
 ```
@@ -29,4 +29,6 @@ $ cd spring-portlet-mvc-rest-blc
 $ mvn package
 $ mvn -Djetty.port=9999 portlet-prototyping:run
 ```
+
+Finally just access <http://localhost:9999/pluto/portal>
 
