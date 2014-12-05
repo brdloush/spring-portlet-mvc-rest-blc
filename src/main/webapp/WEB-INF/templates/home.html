@@ -1,0 +1,79 @@
+<h3>Portlet+SpringMVC+Themeleaf+Jersey --> BLC REST API</h3>
+
+<div th:if="${order}">
+	<h4>Content of Shopping cart (via REST api)</h4>
+	<div class="well">
+				<div class="container-fluid">
+					<div class="row">
+						<span class="span1">
+							<strong> Order ID</strong>: <span th:text="${order.id}"/>,
+						</span>
+						<span class="span1">
+							<strong>Customer ID:</strong> <span th:text="${order.customer.id}"/>,
+						</span>
+						<span class="span1">
+							<strong># of items:</strong> <span th:text="${orderItemsCount}"/>,
+						</span>
+						<span class="span1">
+							<strong>Total price:</strong> <span th:if="${order.total}" th:text="${order.total.amount+' '+order.total.currency}"/>
+						</span>
+					</div>
+					<p>&nbsp;</p>
+					<div class="row">
+						<ul>
+							<li th:each="item:${order.orderItems}">
+								<form th:action="${removeItemAction}" method="post">
+									<span th:text="${item.quantity+'x'}"/>
+									<span th:text="${item.name}"/>
+									<span th:text="${'('+item.retailPrice.amount+' '+item.retailPrice.currency+')'}"/>
+								
+									<input type="hidden" name="itemId" th:value="${item.id}"/>
+									<input type="submit" class="btn-xs" value="Remove"/>
+								</form>
+							</li>
+						</ul>
+					</div>					
+				</div>
+		</div>
+</div>
+
+
+
+<h4>Add item to order</h4>
+<div class="well">
+	<form th:action="${addToOrderAction}" method="post" id="submitForm" >
+		Sku ID: <input type="text" name="skuId"/>
+		<input type="submit" class="btn btn-info btn-xs" value="Add"/>
+	</form>
+	
+	<div th:if="${username}">
+		Result from last request = <span th:text="${username}"/>
+	</div> 
+</div>
+
+<h4>Hello-world form submit</h4>
+<div class="well">
+	<form th:action="${sayHelloAction}" method="post" id="submitForm" >
+		Username: <input type="text" name="username"/>
+		<input type="submit" class="btn btn-info btn-xs" value="Submit"/>
+	</form>
+	
+	<div th:if="${username}">
+		Result from last request = <span th:text="${username}"/>
+	</div> 
+</div>
+	
+<h4>MVC sanity check:</h4>
+<div class="well">
+	<ul>
+		<li><strong>currentTime from model</strong>: <span th:remove="tag" th:text="${serverTime}"/></li>
+		<li><strong>text from resources</strong>: <span th:text="#{hello.from.message.resource}"/></li>
+	</ul>
+</div>
+
+<h4>StopWatches:</h4>
+<div class="well">
+	<ul>
+		<li th:each="stopWatch:${stopWatches}" th:text="${stopWatch}"/>
+	</ul>
+</div>

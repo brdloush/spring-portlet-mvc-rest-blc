@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="templateResolver"
+		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+	   <!-- 
+	    -->
+	    <property name="cacheable" value="false"/>
+	</bean>
+
+	<bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+	</bean>
+	
+	<bean id="viewResolver" class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+	  <property name="templateEngine" ref="templateEngine" />
+	  <property name="order" value="1" />
+      <!-- 
+       --> 
+       <property name="cache" value="false" />
+       
+	  <property name="viewNames" value="*" />
+	</bean>
+	
+	  <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basename" value="messages" />
+	  </bean>
+</beans>
